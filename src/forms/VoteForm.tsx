@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useRouteMatch } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useRecoilValue } from "recoil"
 import classNames from "classnames/bind"
 
@@ -38,7 +38,7 @@ const VoteForm = ({ tab }: { tab: Tab }) => {
   /* context */
   const { contracts } = useProtocol()
   const govStaked = useRecoilValue(govStakedQuery)
-  const { params } = useRouteMatch<{ id: string }>()
+  const params = useParams()
   const id = Number(params.id)
 
   /* form:validate */

@@ -1,4 +1,4 @@
-import { useRouteMatch } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { gt, sum } from "../../libs/math"
 import { Poll } from "../../data/gov/poll"
 import Card from "../../components/Card"
@@ -12,7 +12,7 @@ import VoteLink from "./VoteLink"
 import styles from "./PollDetails.module.scss"
 
 const PollDetails = ({ poll }: { poll: Poll }) => {
-  const { params } = useRouteMatch<{ id: string }>()
+  const params = useParams()
   const id = Number(params.id)
 
   return !poll ? null : (

@@ -1,4 +1,4 @@
-import { LocationDescriptorObject } from "history"
+import { To } from "react-router-dom"
 import ListGroup from "./ListGroup"
 import styles from "./List.module.scss"
 
@@ -8,7 +8,7 @@ export interface Group {
 }
 
 export interface Item {
-  to: LocationDescriptorObject
+  to: To
   label: string
 }
 

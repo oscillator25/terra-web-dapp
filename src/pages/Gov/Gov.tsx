@@ -1,4 +1,4 @@
-import { RouteProps, useRouteMatch } from "react-router-dom"
+import { RouteProps } from "react-router-dom"
 import routes from "../../routes"
 import Poll from "../Poll/Poll"
 import CreatePoll from "../Poll/CreatePoll"
@@ -17,17 +17,16 @@ export enum MenuKey {
 }
 
 export const menu: Record<MenuKey, RouteProps> = {
-  [MenuKey.INDEX]: { path: "/", exact: true, component: GovHome },
-  [MenuKey.STAKE]: { path: "/stake", component: GovStake },
-  [MenuKey.CREATE]: { path: "/poll/create", component: CreatePoll },
-  [MenuKey.VOTE]: { path: "/poll/:id/vote", component: Vote },
-  [MenuKey.CLAIM]: { path: "/poll/:id/claim", component: ClaimVotingReward },
-  [MenuKey.POLL]: { path: "/poll/:id", component: Poll },
+  [MenuKey.INDEX]: { path: "/", element: <GovHome /> },
+  [MenuKey.STAKE]: { path: "/stake", element: <GovStake /> },
+  [MenuKey.CREATE]: { path: "/poll/create", element: <CreatePoll /> },
+  [MenuKey.VOTE]: { path: "/poll/:id/vote", element: <Vote /> },
+  [MenuKey.CLAIM]: { path: "/poll/:id/claim", element: <ClaimVotingReward /> },
+  [MenuKey.POLL]: { path: "/poll/:id", element: <Poll /> },
 }
 
 const Gov = () => {
-  const { path } = useRouteMatch()
-  return <>{routes(menu, path)}</>
+  return <>{routes(menu)}</>
 }
 
 export default Gov

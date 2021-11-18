@@ -1,14 +1,13 @@
 import { forwardRef, ReactNode } from "react"
-import { Link } from "react-router-dom"
+import { Link, To } from "react-router-dom"
 import classNames from "classnames"
-import { LocationDescriptor } from "history"
 import LoadingTitle from "./LoadingTitle"
 import Icon from "./Icon"
 import styles from "./Caption.module.scss"
 
 interface ActionProps {
   className?: string
-  to?: LocationDescriptor
+  to?: To
   children: ReactNode
 }
 

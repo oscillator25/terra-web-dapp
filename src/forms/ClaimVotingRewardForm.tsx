@@ -1,4 +1,4 @@
-import { useRouteMatch } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useRecoilValue } from "recoil"
 import useNewContractMsg from "../libs/useNewContractMsg"
 import { gt, plus } from "../libs/math"
@@ -12,7 +12,7 @@ import useClaimRewardsReceipt from "./receipts/useClaimRewardsReceipt"
 import FormContainer from "./modules/FormContainer"
 
 const ClaimVotingRewardForm = () => {
-  const { params } = useRouteMatch<{ id: string }>()
+  const params = useParams()
   const id = Number(params.id)
 
   /* context */

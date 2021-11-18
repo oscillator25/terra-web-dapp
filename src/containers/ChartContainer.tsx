@@ -59,7 +59,7 @@ const ChartContainer = ({ change, datasets = [], ...props }: Props) => {
     ],
   }
 
-  const options: ChartOptions<"bar" | "line"> = {
+  const options: ChartOptions = {
     interaction: { mode: "index", intersect: false },
     responsive: true,
     maintainAspectRatio: false,

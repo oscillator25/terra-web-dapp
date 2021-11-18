@@ -1,4 +1,3 @@
-import { useRouteMatch } from "react-router-dom"
 import { useAddress } from "../../hooks"
 import { useProtocol } from "../../data/contract/protocol"
 import { useGovStaked } from "../../data/contract/normalize"
@@ -28,10 +27,8 @@ const GovStakeInfo = () => {
     },
   ]
 
-  const { url } = useRouteMatch()
-
   const stake = {
-    to: url + "/stake",
+    to: "./stake",
     className: styles.button,
     disabled: !address,
   }

@@ -1,8 +1,7 @@
 import { ReactNode } from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate, To } from "react-router-dom"
 import classNames from "classnames/bind"
 import { isNil, path } from "ramda"
-import { LocationDescriptor } from "history"
 import styles from "./Table.module.scss"
 
 const cx = classNames.bind(styles)
@@ -22,12 +21,12 @@ interface Props<T> {
 
 interface Row {
   background?: string
-  to?: LocationDescriptor
+  to?: To
 }
 
 interface Cell {
   background?: string
-  to?: LocationDescriptor
+  to?: To
 }
 
 interface Column<T> {
@@ -59,7 +58,7 @@ const SEP = "."
 type DefaultRecordType = Record<string, any>
 function Table<T extends DefaultRecordType>(props: Props<T>) {
   const { caption, rowKey, rows, columns, dataSource, config } = props
-  const { push } = useHistory()
+  const navigate = useNavigate()
 
   const normalized = columns.reduce<Column<T>[]>(
     (acc, { children, ...column }) => {
@@ -188,7 +187,7 @@ function Table<T extends DefaultRecordType>(props: Props<T>) {
                         { clickable: cell?.to },
                         tdClassName
                       )}
-                      onClick={() => cell?.to && push(cell.to)}
+                      onClick={() => cell?.to && navigate(cell.to)}
                       style={{ width }}
                       key={key}
                     >
@@ -216,7 +215,7 @@ function Table<T extends DefaultRecordType>(props: Props<T>) {
                 return (
                   <tr
                     className={cx(row?.background, { clickable: row?.to })}
-                    onClick={() => row?.to && push(row.to)}
+                    onClick={() => row?.to && navigate(row.to)}
                     key={record[rowKey]}
                   >
                     {normalized.map(renderTd)}

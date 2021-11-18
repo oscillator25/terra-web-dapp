@@ -1,7 +1,10 @@
 import { CSSProperties } from "react"
 import { NavLink } from "react-router-dom"
+import classNames from "classnames/bind"
 import Icon from "./Icon"
 import styles from "./Menu.module.scss"
+
+const cx = classNames.bind(styles)
 
 interface MenuItem {
   icon: IconNames
@@ -17,9 +20,9 @@ const Menu = ({ list }: { list: MenuItem[] }) => {
           <li className={styles.item} style={style} key={attrs.children}>
             <NavLink
               {...attrs}
-              exact={attrs.to === "/"}
-              className={styles.link}
-              activeClassName={styles.active}
+              className={({ isActive }) =>
+                cx(styles.link, { active: isActive })
+              }
             >
               <div className={styles.wrapper}>
                 <Icon name={icon} className={styles.icon} />

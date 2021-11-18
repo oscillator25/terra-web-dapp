@@ -1,4 +1,3 @@
-import { useRouteMatch } from "react-router-dom"
 import { MenuKey } from "../../routes"
 import Page from "../../components/Page"
 import LinkButton from "../../components/LinkButton"
@@ -9,7 +8,6 @@ import { menu, MenuKey as GovMenuKey } from "./Gov"
 import GovHomeHeader from "./GovHomeHeader"
 
 const GovHome = () => {
-  const { url } = useRouteMatch()
   const forumLink = {
     href: "https://forum.mirror.finance",
     children: "Join Forum",
@@ -18,7 +16,7 @@ const GovHome = () => {
   }
 
   const createLink = {
-    to: url + menu[GovMenuKey.CREATE].path,
+    to: `./${menu[GovMenuKey.CREATE].path}`,
     children: GovMenuKey.CREATE,
     size: "xs" as const,
     outline: true,

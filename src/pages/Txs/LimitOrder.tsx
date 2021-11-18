@@ -1,4 +1,4 @@
-import { RouteProps, useRouteMatch } from "react-router-dom"
+import { RouteProps, useParams } from "react-router-dom"
 import Page from "../../components/Page"
 import CancelOrderForm from "../../forms/CancelOrderForm"
 import { useLimitOrder } from "../../data/contract/order"
@@ -9,8 +9,7 @@ export enum MenuKey {
 }
 
 const CancelOrder = () => {
-  const { params } = useRouteMatch<{ id: string }>()
-  const { id } = params
+  const { id } = useParams()
 
   const parsed = useLimitOrder(Number(id))
 
@@ -22,12 +21,11 @@ const CancelOrder = () => {
 }
 
 export const menu: Record<MenuKey, RouteProps> = {
-  [MenuKey.CANCEL]: { path: "/:id", component: CancelOrder },
+  [MenuKey.CANCEL]: { path: "/:id", element: <CancelOrder /> },
 }
 
 const LimitOrder = () => {
-  const { path } = useRouteMatch()
-  return routes(menu, path)
+  return routes(menu)
 }
 
 export default LimitOrder

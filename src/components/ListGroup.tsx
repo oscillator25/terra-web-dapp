@@ -33,9 +33,9 @@ const ListGroup = ({ title, items, initial }: Props) => {
             <li key={label}>
               <NavLink
                 to={to}
-                className={styles.link}
-                activeClassName={styles.active}
-                isActive={() => hash === to.hash}
+                className={({ isActive }) =>
+                  cx(styles.link, { active: isActive })
+                }
               >
                 {label}
               </NavLink>

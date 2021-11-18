@@ -1,4 +1,4 @@
-import { Switch, Route, RouteProps, Redirect } from "react-router-dom"
+import { Routes, Route, RouteProps, Navigate } from "react-router-dom"
 
 /* Menu */
 import My from "./pages/My/My"
@@ -21,7 +21,6 @@ import Tool from "./pages/Tools/Tool"
 import Data from "./pages/Tools/Data"
 import Auth from "./pages/Auth"
 import Receipt from "./pages/Tools/Receipt"
-import Caution from "./forms/modules/Caution"
 
 export enum MenuKey {
   MY = "My Page",
@@ -39,35 +38,34 @@ export enum MenuKey {
 }
 
 export const menu: Dictionary<RouteProps> = {
-  [MenuKey.MY]: { path: "/my", component: My },
-  [MenuKey.TRADE]: { path: "/trade", component: Trade },
-  [MenuKey.BORROW]: { path: "/borrow", component: Borrow },
-  [MenuKey.FARM]: { path: "/farm", component: Farm },
-  [MenuKey.GOV]: { path: "/gov", component: Gov },
+  [MenuKey.MY]: { path: "/my", element: <My /> },
+  [MenuKey.TRADE]: { path: "/trade", element: <Trade /> },
+  [MenuKey.BORROW]: { path: "/borrow", element: <Borrow /> },
+  [MenuKey.FARM]: { path: "/farm", element: <Farm /> },
+  [MenuKey.GOV]: { path: "/gov", element: <Gov /> },
 
-  [MenuKey.SEND]: { path: "/send", component: Send },
-  [MenuKey.MINT]: { path: "/mint", component: Mint },
-  [MenuKey.STAKE]: { path: "/stake", component: Stake },
-  [MenuKey.CLAIMREWARDS]: { path: "/claim/rewards", component: ClaimRewards },
-  [MenuKey.CLAIMUST]: { path: "/claim/ust", component: ClaimUST },
-  [MenuKey.LIMIT]: { path: "/limit", component: LimitOrder },
+  [MenuKey.SEND]: { path: "/send", element: <Send /> },
+  [MenuKey.MINT]: { path: "/mint", element: <Mint /> },
+  [MenuKey.STAKE]: { path: "/stake", element: <Stake /> },
+  [MenuKey.CLAIMREWARDS]: { path: "/claim/rewards", element: <ClaimRewards /> },
+  [MenuKey.CLAIMUST]: { path: "/claim/ust", element: <ClaimUST /> },
+  [MenuKey.LIMIT]: { path: "/limit", element: <LimitOrder /> },
 
-  info: { path: "/info", component: Info },
-  tool: { path: "/tool", component: Tool },
-  data: { path: "/data", component: Data },
-  auth: { path: "/auth", component: Auth },
-  receipt: { path: "/receipt", component: Receipt },
-  caution: { path: "/caution", component: Caution },
+  info: { path: "/info", element: <Info /> },
+  tool: { path: "/tool", element: <Tool /> },
+  data: { path: "/data", element: <Data /> },
+  auth: { path: "/auth", element: <Auth /> },
+  receipt: { path: "/receipt", element: <Receipt /> },
 }
 
 export const getPath = (key: MenuKey) => menu[key].path as string
 
 export default (routes: Dictionary<RouteProps> = menu, path: string = "") => (
-  <Switch>
+  <Routes>
     {Object.entries(routes).map(([key, route]) => (
       <Route {...route} path={path + route.path} key={key} />
     ))}
 
-    <Redirect to="/trade" />
-  </Switch>
+    <Navigate to="/trade" />
+  </Routes>
 )

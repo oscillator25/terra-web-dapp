@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useRouteMatch } from "react-router-dom"
 import classNames from "classnames/bind"
 
 import Tooltips from "../../lang/Tooltips"
@@ -23,7 +22,6 @@ import styles from "./Polls.module.scss"
 const cx = classNames.bind(styles)
 
 const Polls = ({ title }: { title: string }) => {
-  const { url } = useRouteMatch()
   const { idle, data, more } = usePolls()
   const parsePoll = useParsePoll()
   const getVoted = useGetVoted()
@@ -79,7 +77,7 @@ const Polls = ({ title }: { title: string }) => {
             const dim = !filter && !isEmphasizedPoll(poll)
 
             return (
-              <Card to={`${url}/poll/${id}`} className={cx({ dim })} key={id}>
+              <Card to={`./poll/${id}`} className={cx({ dim })} key={id}>
                 <PollItem {...poll} />
               </Card>
             )
