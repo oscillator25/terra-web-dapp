@@ -8,7 +8,7 @@ const Footer = () => {
     <>
       <DocsLink />
       <hr />
-      <Community network={name} project="mirror-web-app" />
+      <Community network={name} project="help-station" />
     </>
   )
 }
