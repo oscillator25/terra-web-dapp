@@ -21,7 +21,7 @@ const Gov = () => {
       list={[
         {
           title: <TooltipIcon content={Tooltips.My.Staked}>Staked</TooltipIcon>,
-          content: formatAsset(staked, "MIR"),
+          content: formatAsset(staked, "KARMA"),
         },
         {
           title: (
@@ -29,7 +29,7 @@ const Gov = () => {
               Voting Rewards
             </TooltipIcon>
           ),
-          content: formatAsset(votingRewards, "MIR"),
+          content: formatAsset(votingRewards, "KARMA"),
         },
       ]}
     />
@@ -39,7 +39,9 @@ const Gov = () => {
     <Table
       caption={
         <Caption
-          title={<TooltipIcon content={Tooltips.My.Govern}>Govern</TooltipIcon>}
+          title={
+            <TooltipIcon content={Tooltips.My.Govern}>Governance</TooltipIcon>
+          }
           description={description}
         />
       }
@@ -62,14 +64,14 @@ const Gov = () => {
         },
         {
           key: "balance",
-          title: "Vote MIR",
-          render: (amount) => <Formatted symbol="MIR">{amount}</Formatted>,
+          title: "Vote KARMA",
+          render: (amount) => <Formatted symbol="KARMA">{amount}</Formatted>,
           align: "right",
         },
         {
           key: "reward",
           render: (amount) =>
-            gt(amount, 0) && <Formatted symbol="MIR">{amount}</Formatted>,
+            gt(amount, 0) && <Formatted symbol="KARMA">{amount}</Formatted>,
           align: "right",
         },
         {

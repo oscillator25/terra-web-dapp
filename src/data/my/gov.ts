@@ -56,14 +56,14 @@ export const useMyGov = () => {
   const priceKey = PriceKey.PAIR
 
   const { getToken } = useProtocol()
-  const mir = getToken("MIR")
+  const karma = getToken("KARMA")
 
   const findPrice = useFindPrice()
   const { contents: govStaked, isLoading: isLoadingStaked } = useGovStaked()
   const { contents: govStaker, isLoading: isLoadingStaker } = useGovStaker()
   const { contents: dataSource, isLoading: isLoadingHistory } = useVoteHistory()
 
-  const price = findPrice(priceKey, mir)
+  const price = findPrice(priceKey, karma)
   const valid = gt(govStaked, 1)
 
   const staked = valid ? govStaked : "0"

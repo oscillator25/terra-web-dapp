@@ -111,7 +111,7 @@ const StakeForm = ({ type, tab, gov, ...props }: Props) => {
         autoFocus: true,
       },
       help: renderBalance(max, symbol),
-      unit: gov ? "MIR" : "LP",
+      unit: gov ? "KARMA" : "LP",
       max: gt(max, 0)
         ? () => setValue(Key.value, lookup(max, symbol))
         : undefined,
@@ -134,7 +134,7 @@ const StakeForm = ({ type, tab, gov, ...props }: Props) => {
     ? [
         {
           title: "Staked after tx",
-          content: formatAsset(afterTx, !gov ? getLpName(symbol) : "MIR"),
+          content: formatAsset(afterTx, !gov ? getLpName(symbol) : "KARMA"),
         },
       ]
     : []
@@ -182,7 +182,7 @@ const StakeForm = ({ type, tab, gov, ...props }: Props) => {
   }[type as StakeType]
 
   const govUnstakeMessages = gt(locked, 0)
-    ? [`${formatAsset(locked, "MIR")} are voted in poll ${lockedIds}`]
+    ? [`${formatAsset(locked, "KARMA")} are voted in poll ${lockedIds}`]
     : undefined
 
   const messages =

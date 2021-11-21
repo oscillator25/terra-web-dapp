@@ -8,11 +8,11 @@ import TradeList from "./TradeList"
 const Trade = () => {
   const { hash: type } = useHash<TradeType>()
   return (
-    <Page title="Trade">
+    <Page title="Contribute">
       {!type ? (
         <TradeList />
       ) : (
-        <Tab tabs={[TradeType.BUY, TradeType.SELL]} current={type}>
+        <Tab tabs={[TradeType.PLEDGE, TradeType.SWAP]} current={type}>
           <TradeForm type={type} key={type} />
         </Tab>
       )}

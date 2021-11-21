@@ -1,22 +1,22 @@
 import Tooltips from "../../lang/Tooltips"
+import { useTotalStaked } from "../../data/gov/store"
 import Summary from "../../components/Summary"
 import Formatted from "../../components/Formatted"
-import useCommunityBalance from "../../data/contract/community"
 
-const CommunityBalance = () => {
-  const balance = useCommunityBalance()
+const TotalPledged = () => {
+  const totalPledged = useTotalStaked()
 
   return (
     <Summary
-      title="Community Pool"
-      tooltip={Tooltips.Gov.CommunityPoolBalance}
+      title="Total Pledged"
+      tooltip={Tooltips.Gov.TotalPledged}
       size="sm"
     >
       <Formatted symbol="KARMA" integer>
-        {balance}
+        {totalPledged}
       </Formatted>
     </Summary>
   )
 }
 
-export default CommunityBalance
+export default TotalPledged

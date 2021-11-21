@@ -7,7 +7,7 @@ import BorrowList from "./BorrowList"
 const Borrow = () => {
   const { hash: type } = useHash<MintType>()
   return (
-    <Page title="Borrow" description="Mint">
+    <Page title="Request">
       {!type ? <BorrowList /> : <MintForm type={type} />}
     </Page>
   )

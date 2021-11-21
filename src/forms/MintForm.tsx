@@ -133,7 +133,7 @@ const MintForm = ({ position, type }: Props) => {
     prevCollateral && prevAsset && getRatio(prevCollateral, prevAsset)
 
   const initialToken =
-    state?.token ?? listed.find(({ symbol }) => symbol !== "MIR")?.token
+    state?.token ?? listed.find(({ symbol }) => symbol !== "KARMA")?.token
 
   const initialRatio = getSafeRatio(getMinRatio("uusd", initialToken))
 
@@ -229,7 +229,7 @@ const MintForm = ({ position, type }: Props) => {
     priceKey: priceKey2,
     token: token2,
     onSelect: onSelect(Key.token2),
-    validate: ({ symbol }) => symbol !== "MIR",
+    validate: ({ symbol }) => symbol !== "KARMA",
     dim: (token) => isClosed(token),
   })
 
@@ -270,13 +270,13 @@ const MintForm = ({ position, type }: Props) => {
 
   const toBuy = {
     pathname: getPath(MenuKey.TRADE),
-    hash: TradeType.BUY,
+    hash: TradeType.PLEDGE,
     state: { token: token2 },
   }
 
   const linkToBuy = (
     <Link className={styles.link} to={toBuy}>
-      Buy {symbol2}
+      PLEDGE {symbol2}
     </Link>
   )
 

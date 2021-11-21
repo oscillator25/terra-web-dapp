@@ -16,7 +16,7 @@ export const getMintPriceKeyQuery = selector({
     return (token: string) =>
       getIsExternal(token)
         ? PriceKey.EXTERNAL
-        : getSymbol(token) === "MIR"
+        : getSymbol(token) === "KARMA"
         ? PriceKey.PAIR
         : getIsPreIPO(token)
         ? PriceKey.PRE

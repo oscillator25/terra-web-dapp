@@ -30,7 +30,7 @@ export const oraclePriceQuery = selector({
     const getListedContractQueries = get(getListedContractQueriesQuery)
     return await getListedContractQueries<Rate>(
       ({ token, symbol }) =>
-        symbol === "MIR"
+        symbol === "KARMA"
           ? undefined
           : {
               contract: contracts["oracle"],
@@ -48,7 +48,7 @@ export const mintAssetConfigQuery = selector({
     const getListedContractQueries = get(getListedContractQueriesQuery)
     return await getListedContractQueries<MintAssetConfig>(
       ({ token, symbol }) =>
-        symbol === "MIR"
+        symbol === "KARMA"
           ? undefined
           : {
               contract: contracts["mint"],

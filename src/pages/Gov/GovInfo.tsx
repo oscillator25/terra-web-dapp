@@ -2,19 +2,19 @@ import Card, { CardMain } from "../../components/Card"
 import AssetItem from "../../components/AssetItem"
 import { useProtocol } from "../../data/contract/protocol"
 import CommunityBalance from "./CommunityBalance"
-import TotalStaked from "./TotalStaked"
+import TotalPledged from "./TotalPledged"
 import styles from "./GovInfo.module.scss"
 
 const GovInfo = () => {
   const { getToken } = useProtocol()
-  const token = getToken("MIR")
+  const token = getToken("KARMA")
 
   const footer = (
     <CardMain>
       <div className={styles.grid}>
         <section className={styles.wrapper}>
           <CommunityBalance />
-          <TotalStaked />
+          <TotalPledged />
         </section>
       </div>
     </CardMain>

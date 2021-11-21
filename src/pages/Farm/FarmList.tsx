@@ -43,7 +43,7 @@ const FarmList = () => {
   const dataSource = list
     .filter(({ symbol, name }) => [symbol, name].some(filter))
     .sort(compare)
-    .sort((a, b) => Number(b.symbol === "MIR") - Number(a.symbol === "MIR"))
+    .sort((a, b) => Number(b.symbol === "KARMA") - Number(a.symbol === "KARMA"))
 
   return (
     <>
@@ -54,7 +54,7 @@ const FarmList = () => {
         <Table
           rowKey="token"
           rows={({ token }) =>
-            getSymbol(token) === "MIR" ? { background: "darker" } : {}
+            getSymbol(token) === "KARMA" ? { background: "darker" } : {}
           }
           columns={[
             {
@@ -98,7 +98,7 @@ const FarmList = () => {
                 </TooltipIcon>
               ),
               render: (value, { token, recommended }) =>
-                getSymbol(token) !== "MIR" && (
+                getSymbol(token) !== "KARMA" && (
                   <>
                     <Percent
                       color={recommended === "short" ? "blue" : undefined}
@@ -116,7 +116,7 @@ const FarmList = () => {
                   </>
                 ),
               cell: (_, { token, recommended }) =>
-                getSymbol(token) !== "MIR"
+                getSymbol(token) !== "KARMA"
                   ? {
                       background:
                         recommended === "short" ? "darker" : undefined,
@@ -127,19 +127,8 @@ const FarmList = () => {
             },
             {
               key: PriceKey.PAIR,
-              title: "Terraswap Price",
+              title: "Terraswap Amount",
               render: (value) => <Formatted unit="UST">{value}</Formatted>,
-              align: "right",
-              desktop: true,
-            },
-            {
-              key: "premium",
-              title: (
-                <TooltipIcon content={Tooltips.Farm.Premium}>
-                  Premium
-                </TooltipIcon>
-              ),
-              render: (value) => <Percent>{value}</Percent>,
               align: "right",
               desktop: true,
             },

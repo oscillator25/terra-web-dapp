@@ -105,7 +105,7 @@ const parsePollQuery = selector({
             voting_period: getBlocks(voting_period),
             effective_delay: getBlocks(effective_delay),
             proposal_deposit: proposal_deposit
-              ? formatAsset(proposal_deposit, "MIR")
+              ? formatAsset(proposal_deposit, "KARMA")
               : undefined,
             voter_weight,
           }),
@@ -129,7 +129,7 @@ const parsePollQuery = selector({
     const parseSpend = ({ recipient, amount }: Spend) => ({
       contents: parseContents({
         recipient,
-        amount: formatAsset(amount, "MIR"),
+        amount: formatAsset(amount, "KARMA"),
       }),
     })
 

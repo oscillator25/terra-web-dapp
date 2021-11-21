@@ -48,10 +48,10 @@ export default (params: Params, isLimitOrder: boolean) => {
         const commission = result?.commission_amount
 
         const price = {
-          [TradeType.BUY]: !reverse
+          [TradeType.PLEDGE]: !reverse
             ? div(amount, simulatedAmount)
             : div(simulatedAmount, amount),
-          [TradeType.SELL]: !reverse
+          [TradeType.SWAP]: !reverse
             ? div(simulatedAmount, amount)
             : div(amount, simulatedAmount),
         }[type]

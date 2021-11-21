@@ -66,15 +66,16 @@ const TradeForm = ({ type }: { type: TradeType }) => {
 
   /* form:validate */
   const validate = ({ target, value1, value2, token }: Values<Key>) => {
-    const token1 = { [TradeType.BUY]: "uusd", [TradeType.SELL]: token }[type]
-    const token2 = { [TradeType.BUY]: token, [TradeType.SELL]: "uusd" }[type]
+    const token1 = { [TradeType.PLEDGE]: "uusd", [TradeType.SWAP]: token }[type]
+    const token2 = { [TradeType.PLEDGE]: token, [TradeType.SWAP]: "uusd" }[type]
     const symbol1 = getSymbol(token1)
     const symbol2 = getSymbol(token2)
     const max = findBalance(token1)
     const price = findPrice(priceKey, token)
-    const targetRangeKey = { [TradeType.BUY]: "max", [TradeType.SELL]: "min" }[
-      type
-    ]
+    const targetRangeKey = {
+      [TradeType.PLEDGE]: "max",
+      [TradeType.SWAP]: "min",
+    }[type]
 
     return {
       [Key.value1]: v.amount(value1, { symbol: symbol1, max }),
@@ -91,7 +92,7 @@ const TradeForm = ({ type }: { type: TradeType }) => {
     [Key.target]: "",
     [Key.value1]: "",
     [Key.value2]: "",
-    [Key.token]: state?.token ?? getToken("MIR"),
+    [Key.token]: state?.token ?? getToken("KARMA"),
   }
 
   const form = useForm<Key>(initial, validate)
@@ -99,12 +100,12 @@ const TradeForm = ({ type }: { type: TradeType }) => {
   const { value1, value2, token, target } = values
   const amount1 = toAmount(value1)
   const amount2 = toAmount(value2)
-  const token1 = { [TradeType.BUY]: "uusd", [TradeType.SELL]: token }[type]
-  const token2 = { [TradeType.BUY]: token, [TradeType.SELL]: "uusd" }[type]
+  const token1 = { [TradeType.PLEDGE]: "uusd", [TradeType.SWAP]: token }[type]
+  const token2 = { [TradeType.PLEDGE]: token, [TradeType.SWAP]: "uusd" }[type]
   const symbol = getSymbol(token)
   const symbol1 = getSymbol(token1)
   const symbol2 = getSymbol(token2)
-  const uusd = { [TradeType.BUY]: amount1, [TradeType.SELL]: amount2 }[type]
+  const uusd = { [TradeType.PLEDGE]: amount1, [TradeType.SWAP]: amount2 }[type]
 
   /* form:focus input on select asset */
   const value1Ref = useRef<HTMLInputElement>(null)
@@ -121,8 +122,8 @@ const TradeForm = ({ type }: { type: TradeType }) => {
 
   /* simulation */
   const { pair } = whitelist[token] ?? {}
-  const buying = type === TradeType.BUY
-  const selling = type === TradeType.SELL
+  const buying = type === TradeType.PLEDGE
+  const selling = type === TradeType.SWAP
   const reverse = form.changed === Key.value2
 
   const simulationParams = Object.assign(
@@ -138,7 +139,7 @@ const TradeForm = ({ type }: { type: TradeType }) => {
   /* change another amount on simulate */
   useEffect(() => {
     const key = isLimitOrder
-      ? type === TradeType.BUY
+      ? type === TradeType.PLEDGE
         ? Key.value1
         : Key.value2
       : reverse
@@ -146,8 +147,8 @@ const TradeForm = ({ type }: { type: TradeType }) => {
       : Key.value2
     const symbol = reverse ? symbol1 : symbol2
     const targetAmount = {
-      [TradeType.BUY]: times(value2, target),
-      [TradeType.SELL]: times(value1, target),
+      [TradeType.PLEDGE]: times(value2, target),
+      [TradeType.SWAP]: times(value1, target),
     }[type]
 
     const next = isLimitOrder
@@ -182,11 +183,13 @@ const TradeForm = ({ type }: { type: TradeType }) => {
 
   const { getMax } = useTax()
   const max = {
-    [TradeType.BUY]: lookup(getMax(balance), "uusd"),
-    [TradeType.SELL]: lookup(balance, symbol),
+    [TradeType.PLEDGE]: lookup(getMax(balance), "uusd"),
+    [TradeType.SWAP]: lookup(balance, symbol),
   }[type]
 
-  const targetLabel = { [TradeType.BUY]: "Bid", [TradeType.SELL]: "Ask" }[type]
+  const targetLabel = { [TradeType.PLEDGE]: "Bid", [TradeType.SWAP]: "Ask" }[
+    type
+  ]
   const fields = getFields({
     [Key.target]: {
       label: "at",
@@ -203,8 +206,8 @@ const TradeForm = ({ type }: { type: TradeType }) => {
     },
     [Key.value1]: {
       label: !isLimitOrder
-        ? { [TradeType.BUY]: "Pay", [TradeType.SELL]: "Sell" }[type]
-        : { [TradeType.BUY]: "and pay", [TradeType.SELL]: "Order to sell" }[
+        ? { [TradeType.PLEDGE]: "Pay", [TradeType.SWAP]: "SWAP" }[type]
+        : { [TradeType.PLEDGE]: "and pay", [TradeType.SWAP]: "Order to swap" }[
             type
           ],
       input:
@@ -220,24 +223,25 @@ const TradeForm = ({ type }: { type: TradeType }) => {
             },
       value: isLimitOrder && buying ? value1 : undefined,
       unit: {
-        [TradeType.BUY]: lookupSymbol(symbol1),
-        [TradeType.SELL]: delisted ? symbol1 : select.button,
+        [TradeType.PLEDGE]: lookupSymbol(symbol1),
+        [TradeType.SWAP]: delisted ? symbol1 : select.button,
       }[type],
       max:
         (isLimitOrder && buying) || !gt(max, 0)
           ? undefined
           : () => setValue(Key.value1, max),
-      assets: type === TradeType.SELL && select.assets,
+      assets: type === TradeType.SWAP && select.assets,
       help: renderBalance(findBalance(token1), symbol1),
-      focused: type === TradeType.SELL && select.isOpen,
+      focused: type === TradeType.SWAP && select.isOpen,
     },
 
     [Key.value2]: {
       label: !isLimitOrder
-        ? { [TradeType.BUY]: "to buy", [TradeType.SELL]: "to get" }[type]
-        : { [TradeType.BUY]: "Order to buy", [TradeType.SELL]: "and get" }[
-            type
-          ],
+        ? { [TradeType.PLEDGE]: "to pledge", [TradeType.SWAP]: "to get" }[type]
+        : {
+            [TradeType.PLEDGE]: "Order to pledge",
+            [TradeType.SWAP]: "and get",
+          }[type],
       input:
         isLimitOrder && selling
           ? undefined
@@ -250,19 +254,19 @@ const TradeForm = ({ type }: { type: TradeType }) => {
             },
       value: isLimitOrder && selling ? value2 : undefined,
       unit: {
-        [TradeType.BUY]: select.button,
-        [TradeType.SELL]: lookupSymbol(symbol2),
+        [TradeType.PLEDGE]: select.button,
+        [TradeType.SWAP]: lookupSymbol(symbol2),
       }[type],
-      assets: type === TradeType.BUY && select.assets,
+      assets: type === TradeType.PLEDGE && select.assets,
       help: renderBalance(findBalance(token2), symbol2),
-      focused: type === TradeType.BUY && select.isOpen,
+      focused: type === TradeType.PLEDGE && select.isOpen,
     },
   })
 
   /* confirm */
   const belief = {
-    [TradeType.BUY]: decimal(simulated?.price, 18),
-    [TradeType.SELL]: decimal(div(1, simulated?.price), 18),
+    [TradeType.PLEDGE]: decimal(simulated?.price, 18),
+    [TradeType.SWAP]: decimal(div(1, simulated?.price), 18),
   }[type]
 
   const minimumReceived = simulated
@@ -310,14 +314,14 @@ const TradeForm = ({ type }: { type: TradeType }) => {
   const limitOrderContract = contracts["limitOrder"]
   const limitOrderData = limitOrderContract
     ? {
-        [TradeType.BUY]: [
+        [TradeType.PLEDGE]: [
           newContractMsg(
             limitOrderContract,
             { submit_order: { offer_asset: asset1, ask_asset: asset2 } },
             { amount: amount1, denom: "uusd" }
           ),
         ],
-        [TradeType.SELL]: [
+        [TradeType.SWAP]: [
           newContractMsg(token, {
             send: {
               contract: limitOrderContract,
@@ -332,14 +336,14 @@ const TradeForm = ({ type }: { type: TradeType }) => {
   const data = isLimitOrder
     ? limitOrderData
     : {
-        [TradeType.BUY]: [
+        [TradeType.PLEDGE]: [
           newContractMsg(
             pair,
             { swap: { ...swap, offer_asset: asset1 } },
             { amount: amount1, denom: "uusd" }
           ),
         ],
-        [TradeType.SELL]: [
+        [TradeType.SWAP]: [
           newContractMsg(token, {
             send: { amount: amount1, contract: pair, msg: toBase64({ swap }) },
           }),
@@ -347,8 +351,8 @@ const TradeForm = ({ type }: { type: TradeType }) => {
       }[type]
 
   const limitOrderValue = {
-    [TradeType.BUY]: times(target, amount2),
-    [TradeType.SELL]: times(target, amount1),
+    [TradeType.PLEDGE]: times(target, amount2),
+    [TradeType.SWAP]: times(target, amount1),
   }[type]
 
   const isLimitOrderValueEnough = gt(limitOrderValue, 1e6)
@@ -375,11 +379,11 @@ const TradeForm = ({ type }: { type: TradeType }) => {
   const parseTx = isLimitOrder ? parseLimitOrder : parseTrade
 
   const container = { attrs, contents, data, disabled, messages, parseTx }
-  const tax = { pretax: uusd, deduct: type === TradeType.SELL }
+  const tax = { pretax: uusd, deduct: type === TradeType.SWAP }
 
   return (
     <WithPriceChart token={token}>
-      {type === TradeType.BUY && !!delist[token] && (
+      {type === TradeType.PLEDGE && !!delist[token] && (
         <DelistModal type={delist[token].type} tokens={[token]} key={token} />
       )}
 
@@ -391,14 +395,14 @@ const TradeForm = ({ type }: { type: TradeType }) => {
 
         {isLimitOrder ? (
           {
-            [TradeType.BUY]: (
+            [TradeType.PLEDGE]: (
               <>
                 <FormGroup {...fields[Key.value2]} />
                 <FormGroup {...fields[Key.target]} />
                 <FormGroup {...fields[Key.value1]} />
               </>
             ),
-            [TradeType.SELL]: (
+            [TradeType.SWAP]: (
               <>
                 <FormGroup {...fields[Key.value1]} />
                 <FormGroup {...fields[Key.target]} />

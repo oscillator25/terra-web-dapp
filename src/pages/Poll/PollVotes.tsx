@@ -26,7 +26,7 @@ const Votes = ({ list }: VotesProps) => (
         <span className={classNames(styles.label, color)} key={label}>
           <strong className={styles.answer}>{label}</strong>
           <span>{percent(value)}</span>
-          <small>{formatAsset(amount, "MIR", { integer: true })}</small>
+          <small>{formatAsset(amount, "KARMA", { integer: true })}</small>
         </span>
       ))}
     </section>

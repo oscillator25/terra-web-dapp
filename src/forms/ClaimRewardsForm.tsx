@@ -14,18 +14,18 @@ const ClaimRewardsForm = () => {
   const { contents: findBalance } = useFindBalance()
   const { contents: rewards } = useRewards()
 
-  const balance = findBalance(getToken("MIR"))
+  const balance = findBalance(getToken("KARMA"))
   const claiming = rewards.total
 
   /* confirm */
   const contents = [
     {
       title: "Claiming",
-      content: <Formatted symbol="MIR">{claiming}</Formatted>,
+      content: <Formatted symbol="KARMA">{claiming}</Formatted>,
     },
     {
-      title: "MIR after Tx",
-      content: <Formatted symbol="MIR">{plus(balance, claiming)}</Formatted>,
+      title: "KARMA after Tx",
+      content: <Formatted symbol="KARMA">{plus(balance, claiming)}</Formatted>,
     },
   ]
 

@@ -33,7 +33,7 @@ enum AnswerKey {
 }
 
 const VoteForm = ({ tab }: { tab: Tab }) => {
-  const symbol = "MIR"
+  const symbol = "KARMA"
 
   /* context */
   const { contracts } = useProtocol()

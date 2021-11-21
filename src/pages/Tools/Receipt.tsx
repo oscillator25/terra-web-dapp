@@ -23,10 +23,10 @@ import useSendReceipt from "../../forms/receipts/useSendReceipt"
 import TxInfo from "../../forms/modules/TxInfo"
 
 const Receipt = () => {
-  const parseTradeBUY = useTradeReceipt(TradeType.BUY)
-  const parseTradeSELL = useTradeReceipt(TradeType.SELL)
-  const parseLimitOrderBUY = useLimitOrderReceipt(TradeType.BUY)
-  const parseLimitOrderSELL = useLimitOrderReceipt(TradeType.SELL)
+  const parseTradeBUY = useTradeReceipt(TradeType.PLEDGE)
+  const parseTradeSELL = useTradeReceipt(TradeType.SWAP)
+  const parseLimitOrderBUY = useLimitOrderReceipt(TradeType.PLEDGE)
+  const parseLimitOrderSELL = useLimitOrderReceipt(TradeType.SWAP)
   const parseCancelOrder = useCancelOrderReceipt()
   const parseMintSHORT = useMintReceipt(MintType.SHORT)
   const parseMintBORROW = useMintReceipt(MintType.BORROW)
@@ -44,10 +44,10 @@ const Receipt = () => {
   const parseSend = useSendReceipt()
 
   const parsers: Dictionary<ResultParser> = {
-    "Trade → BUY": parseTradeBUY,
-    "Trade → SELL": parseTradeSELL,
-    "Limit Order → BUY": parseLimitOrderBUY,
-    "Limit Order → SELL": parseLimitOrderSELL,
+    "Trade → PLEDGE": parseTradeBUY,
+    "Trade → SWAP": parseTradeSELL,
+    "Limit Order → PLEDGE": parseLimitOrderBUY,
+    "Limit Order → SWAP": parseLimitOrderSELL,
     "Cancel Order": parseCancelOrder,
     "Mint → SHORT": parseMintSHORT,
     "Mint → BORROW": parseMintBORROW,

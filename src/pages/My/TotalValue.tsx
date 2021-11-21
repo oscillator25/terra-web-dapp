@@ -41,7 +41,7 @@ const TotalValue = () => {
         block
       >
         <Icon name="Claim" />
-        Claim All Rewards
+        Claim KARMA Rewards
       </LinkButton>
     </CardMain>
   )
@@ -125,7 +125,7 @@ const TotalValue = () => {
         footer={claimAll}
       >
         <p>
-          <Formatted symbol="MIR" big>
+          <Formatted symbol="KARMA" big>
             {rewards.total}
           </Formatted>
         </p>
@@ -134,7 +134,7 @@ const TotalValue = () => {
           <Formatted symbol="uusd">{times(rewards.total, MIRPrice)}</Formatted>
         </p>
 
-        <Summary title="MIR Price" size="xs">
+        <Summary title="Token Price" size="xs">
           <Formatted unit="UST">{MIRPrice}</Formatted>
         </Summary>
       </Card>

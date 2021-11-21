@@ -201,13 +201,13 @@ export const multipliersState = atom<Dictionary>({
   default: {},
 })
 
-/* MIR Price */
+/* KARMA Price */
 export const MIRPriceQuery = selector({
   key: "MIRPrice",
   get: ({ get }) => {
     const { getToken } = get(protocolQuery)
     const pairPrices = get(pairPricesQuery)
-    return pairPrices[getToken("MIR")]
+    return pairPrices[getToken("KARMA")]
   },
 })
 
@@ -280,7 +280,7 @@ export const useMultipliers = () => {
   return useStoreLoadable(multipliersQuery, multipliersState)
 }
 
-/* store: MIR Price */
+/* store: KARMA Price */
 export const useMIRPrice = () => {
   return useStoreLoadable(MIRPriceQuery, MIRPriceState)
 }

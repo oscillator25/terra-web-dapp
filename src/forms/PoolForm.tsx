@@ -118,13 +118,13 @@ const PoolForm = ({ type }: Props) => {
 
   const toBuy = {
     pathname: getPath(MenuKey.TRADE),
-    hash: TradeType.BUY,
+    hash: TradeType.PLEDGE,
     state: { token },
   }
 
   const linkToBuy = (
     <Link className={styles.link} to={toBuy}>
-      bought
+      pledged
     </Link>
   )
 
@@ -143,7 +143,7 @@ const PoolForm = ({ type }: Props) => {
   const info = (
     <>
       {symbol} can be {linkToBuy}
-      {symbol !== "MIR" && <> or {linkToBorrow}</>}
+      {symbol !== "KARMA" && <> or {linkToBorrow}</>}
     </>
   )
 

@@ -16,8 +16,8 @@ export default (type: TradeType, simulatedPrice?: string) => (logs: TxLog[]) => 
   const rtnSymbol = getSymbol(rtn.token)
 
   const price = {
-    [TradeType.BUY]: div(offer.amount, rtn.amount),
-    [TradeType.SELL]: div(rtn.amount, offer.amount),
+    [TradeType.PLEDGE]: div(offer.amount, rtn.amount),
+    [TradeType.SWAP]: div(rtn.amount, offer.amount),
   }[type]
 
   /* contents */
@@ -27,11 +27,11 @@ export default (type: TradeType, simulatedPrice?: string) => (logs: TxLog[]) => 
   }
 
   const priceContents = {
-    [TradeType.BUY]: {
+    [TradeType.PLEDGE]: {
       title: `Limit price per ${lookupSymbol(rtnSymbol)}`,
       content: `${format(price)} ${lookupSymbol(offerSymbol)}`,
     },
-    [TradeType.SELL]: {
+    [TradeType.SWAP]: {
       title: `Limit price per ${lookupSymbol(offerSymbol)}`,
       content: `${format(price)} ${lookupSymbol(rtnSymbol)}`,
     },

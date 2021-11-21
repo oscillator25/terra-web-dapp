@@ -15,7 +15,7 @@ export const useMyShortFarming = () => {
   const myLockedUST = useMyLockedUST()
   const assetsAPR = useAssetsAPR()
 
-  const mir = getToken("MIR")
+  const karma = getToken("KARMA")
 
   const dataSource = listedAll
     .map((item: ListedItem) => {
@@ -43,7 +43,7 @@ export const useMyShortFarming = () => {
       )
     )
 
-  const price = findPrice(priceKey, mir)
+  const price = findPrice(priceKey, karma)
   const totalRewards = rewards.short
   const totalRewardsValue = times(rewards.short, price)
 

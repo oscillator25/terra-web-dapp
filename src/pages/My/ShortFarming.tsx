@@ -25,7 +25,7 @@ const ShortFarming = () => {
           title: "Reward",
           content: (
             <>
-              {formatAsset(totalRewards, "MIR")}{" "}
+              {formatAsset(totalRewards, "KARMA")}{" "}
               <span className="muted">
                 ≈ {formatAsset(totalRewardsValue, "uusd")}
               </span>
@@ -119,7 +119,7 @@ const ShortFarming = () => {
           title: (
             <TooltipIcon content={Tooltips.My.FarmReward}>Reward</TooltipIcon>
           ),
-          render: (value) => <Formatted symbol="MIR">{value}</Formatted>,
+          render: (value) => <Formatted symbol="KARMA">{value}</Formatted>,
           align: "right",
         },
       ]}

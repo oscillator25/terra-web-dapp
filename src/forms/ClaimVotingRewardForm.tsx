@@ -20,18 +20,18 @@ const ClaimVotingRewardForm = () => {
   const { contents: findBalance } = useFindBalance()
   const poll = usePoll(id)
   const voter = useRecoilValue(govAddressVoterQuery(id))
-  const balance = findBalance(getToken("MIR"))
+  const balance = findBalance(getToken("KARMA"))
   const claiming = poll && voter ? calcVotingRewards(poll, voter) : "0"
 
   /* confirm */
   const contents = [
     {
       title: "Claiming",
-      content: <Formatted symbol="MIR">{claiming}</Formatted>,
+      content: <Formatted symbol="KARMA">{claiming}</Formatted>,
     },
     {
-      title: "MIR after Tx",
-      content: <Formatted symbol="MIR">{plus(balance, claiming)}</Formatted>,
+      title: "KARMA after Tx",
+      content: <Formatted symbol="KARMA">{plus(balance, claiming)}</Formatted>,
     },
   ]
 

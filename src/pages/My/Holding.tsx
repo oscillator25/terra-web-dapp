@@ -89,7 +89,7 @@ const Holding = () => {
                   to: {
                     pathname: getPath(MenuKey.TRADE),
                     state: { token },
-                    hash: TradeType.BUY,
+                    hash: TradeType.PLEDGE,
                   },
                   children: MenuKey.TRADE,
                 }

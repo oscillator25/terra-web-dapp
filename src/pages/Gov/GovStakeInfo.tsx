@@ -15,16 +15,16 @@ const GovStakeInfo = () => {
   const address = useAddress()
   const { contents: govStaked } = useGovStaked()
   const { contents: tokenBalances } = useTokenBalances()
-  const { [getToken("MIR")]: govStakable } = tokenBalances
+  const { [getToken("KARMA")]: govStakable } = tokenBalances
 
   const contents = [
     {
-      title: `Staked MIR`,
-      children: <Formatted symbol="MIR">{govStaked}</Formatted>,
+      title: `Pledged KARMA`,
+      children: <Formatted symbol="KARMA">{govStaked}</Formatted>,
     },
     {
-      title: `Stakable MIR`,
-      children: <Formatted symbol="MIR">{govStakable}</Formatted>,
+      title: `Pledgable KARMA`,
+      children: <Formatted symbol="KARMA">{govStakable}</Formatted>,
     },
   ]
 
@@ -45,7 +45,7 @@ const GovStakeInfo = () => {
       ))}
 
       <Submit>
-        <LinkButton {...stake}>Manage Stake</LinkButton>
+        <LinkButton {...stake}>Manage Pledge</LinkButton>
       </Submit>
     </Card>
   )

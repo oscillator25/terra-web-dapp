@@ -1,17 +1,17 @@
 {
   "Dashboard": {
-    "MIRPrice": "Terraswap price of MIR",
+    "KARMAPrice": "Terraswap price of KARMA",
 
-    "TVL": "Total value of collateral, liquidity and staked MIR",
+    "TVL": "Total value of collateral, liquidity and pledged KARMA",
     "Liquidity": "Total value of all mAssets and UST in liquidity pools",
-    "Staked": "Total value of staked MIR",
+    "Staked": "Total value of pledged KARMA",
     "Collateral": "Value of all collateral locked",
     "TVLETH": "Total value of liquidity",
 
-    "MIRCirculatingSupply": {
-      "Liquidity": "Number of MIR in liquidity pool",
-      "Staked": "Number of MIR staked in governance",
-      "Others": "Number of MIR in community pool or held by users"
+    "KARMACirculatingSupply": {
+      "Liquidity": "Number of KARMA in liquidity pool",
+      "Staked": "Number of KARMA pledged in governance",
+      "Others": "Number of KARMA in community pool or held by users"
     },
 
     "mAsset": {
@@ -28,7 +28,7 @@
   },
 
   "My": {
-    "TotalValue": "Total value of all holdings, collateral, withdrawable liquidity, rewards, staked MIR and UST.",
+    "TotalValue": "Total value of all holdings, collateral, withdrawable liquidity, rewards, pledged KARMA and UST.",
 
     "Total": {
       "UST": "Total amount of UST held",
@@ -37,10 +37,10 @@
       "Borrowing": "Total collateral value minus total borrowed value",
       "Pool": "Total value of all mAssets and UST withdrawable from liquidity pools",
       "Farming": "Total value of all mAssets and UST withdrawable from farming pools",
-      "Gov": "Total value of staked MIR and unclaimed voting rewards"
+      "Gov": "Total value of pledged KARMA and unclaimed voting rewards"
     },
 
-    "TotalRewards": "Total number of claimable MIR from Farming positions and voting",
+    "TotalRewards": "Total number of claimable KARMA from Farming positions and voting",
 
     "Holding": "List of mAssets held",
     "Borrowing": "List of borrowing and short positions",
@@ -69,10 +69,10 @@
     "FarmReward": "Quantity of claimable rewards for the corresponding staking position",
     "APR": "Annualized staking return",
 
-    "Staked": "Quantity of MIR staked",
+    "Staked": "Quantity of KARMA pledged",
     "VotingRewards": "Total quantity of claimable rewards from all voted polls",
-    "GovReward": "Protocol fee paid from withdrawing collateral is distributed to MIR stakers and increases staked MIR",
-    "AccRewards": "Total quantity of rewards accumulated from staking MIR",
+    "GovReward": "Protocol fee paid from withdrawing collateral is distributed to KARMA stakers and increases pledged KARMA",
+    "AccRewards": "Total quantity of rewards accumulated from staking KARMA",
 
     "LimitOrder": "List of trade orders to be executed at the limit price",
     "LimitPrice": "Price at which the order will be executed",
@@ -118,15 +118,15 @@
   },
 
   "Farm": {
-    "LongAPR": "Annualized MIR reward return from providing the asset's liquidity.\nThe APR based on premium is updated once every hour.",
-    "ShortAPR": "Annualized MIR reward return from depositing collateral to create short position.\nThe APR based on premium is updated once every hour.",
+    "LongAPR": "Annualized KARMA reward return from providing the asset's liquidity.\nThe APR based on premium is updated once every hour.",
+    "ShortAPR": "Annualized KARMA reward return from depositing collateral to create short position.\nThe APR based on premium is updated once every hour.",
     "Premium": "Percentage difference between Terraswap and Oracle price",
 
-    "Long": "Provide liquidity to receive LP tokens which are staked to earn MIR token rewards",
+    "Long": "Provide liquidity to receive LP tokens which are pledged to earn KARMA token rewards",
     "InputAsset": "Quantity of assets to be added to the corresponding asset liquidity pool",
     "InputUST": "Corresponding required amount of UST added to the liquidity pool",
 
-    "Short": "Provide collateral to create short positions and earn MIR token rewards.",
+    "Short": "Provide collateral to create short positions and earn KARMA token rewards.",
     "Shorted": "Expected quantity of assets shorted with above collateral",
 
     "UnstakeAmount": "Quantity of LP tokens to be burned",
@@ -138,21 +138,21 @@
   },
 
   "Gov": {
-    "TotalStaked": "Total quantity of MIR tokens staked",
-    "StakingRatio": "Ratio of the quantity of staked MIR tokens to the total quantity of MIR",
-    "APR": "Annualized MIR staking return based on 15 days average of MIR distribution and staking ratio. \n\nReward is generated from protocol fee which occurs when collateral is withdrawn from borrow or short position.",
-    "CommunityPoolBalance": "Total number of MIR tokens currently in the community pool",
+    "TotalPledged": "Total quantity of KARMA tokens pledged",
+    "StakingRatio": "Ratio of the quantity of pledged KARMA tokens to the total quantity of KARMA",
+    "APR": "Annualized KARMA staking return based on 15 days average of KARMA distribution and staking ratio. \n\nReward is generated from protocol fee which occurs when collateral is withdrawn from borrow or short position.",
+    "CommunityPoolBalance": "Total number of KARMA tokens currently in the community pool",
 
-    "Polls": "Staked MIR can be used as voting power in polls that are currently in progress",
+    "Polls": "Pledged KARMA can be used as voting power in polls that are currently in progress",
 
     "Ticker": "Ticker of asset to be whitelisted",
     "ListedExchange": "Exchange that the underlying asset trades on",
     "SuggestedOracle": "Oracle provider or address",
 
-    "Weight": "Weight which MIR is distributed",
+    "Weight": "Weight which KARMA is distributed",
     "AuctionDiscount": "Discount rate applied to collateral sold in liquidation auction",
     "MinimumCollateralRatio": "Lowest collateral ratio which users can set to mint new assets. Position will be liquidated below this ratio",
-    "Deposit": "Passing the quorum will return the deposit to the creator. Failure to pass quorum will distribute the deposit to all MIR stakers.",
+    "Deposit": "Passing the quorum will return the deposit to the creator. Failure to pass quorum will distribute the deposit to all KARMA stakers.",
 
     "MintPeriod": "Number of seconds which minting of Pre-IPO assets will be allowed for",
     "MinimumCollateralRatioAfterIPO": "Lowest collateral ratio which users can set to borrow new assets after IPO event.",
@@ -162,12 +162,12 @@
     "Threshold": "Minimum percentage of YES votes to pass a poll (in percentage)",
     "VotingPeriod": "Length of poll (in units of seconds)",
     "EffectiveDelay": "Length of delay before protocol integration for a passed poll (in units of seconds)",
-    "ProposalDeposit": "Minimum deposit to start a poll (in units of MIR)",
+    "ProposalDeposit": "Minimum deposit to start a poll (in units of KARMA)",
 
     "VoterWeight": "Ratio of protocol fee reward to be distributed to voters",
     "Multiplier": "Multiplied to minimum collateral ratio of the borrowed asset",
 
     "Recipient": "Grant recipient address",
-    "Amount": "Grant amount (in units of MIR)"
+    "Amount": "Grant amount (in units of KARMA)"
   }
 }

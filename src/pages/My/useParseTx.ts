@@ -200,7 +200,7 @@ const useParseTx = ({ type, data, token }: Tx) => {
     GOV_CAST_POLL: ["Voted", voteOption, "to poll", pollId],
     GOV_WITHDRAW_VOTING_REWARDS: [
       "Withdraw rewards",
-      formatAsset(amount, "MIR"),
+      formatAsset(amount, "KARMA"),
     ],
 
     /* Airdrop */

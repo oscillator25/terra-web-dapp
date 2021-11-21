@@ -22,7 +22,7 @@ const PollVoters = ({ id }: { id: number }) => {
         { key: "vote", render: (answer) => answer.toUpperCase() },
         {
           key: "balance",
-          render: (amount) => formatAsset(amount, "MIR"),
+          render: (amount) => formatAsset(amount, "KARMA"),
           align: "right",
         },
       ]}

@@ -24,11 +24,11 @@ import Receipt from "./pages/Tools/Receipt"
 import Caution from "./forms/modules/Caution"
 
 export enum MenuKey {
-  MY = "My Page",
-  TRADE = "Trade",
-  BORROW = "Borrow",
-  FARM = "Farm",
-  GOV = "Govern",
+  MY = "Dashboard",
+  TRADE = "Contribute",
+  BORROW = "Request",
+  FARM = "Farm hAssets",
+  GOV = "Governance",
 
   SEND = "Send",
   MINT = "Mint",

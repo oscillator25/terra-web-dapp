@@ -18,7 +18,7 @@ const Header = () => {
         </Link>
 
         <section className={classNames(styles.item, styles.network)}>
-          {name !== "mainnet" && (
+          {name !== "testnet" && (
             <Link to="/auth">
               <Badge bg="red">{name.toUpperCase()}</Badge>
             </Link>

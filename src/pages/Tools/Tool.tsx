@@ -15,7 +15,7 @@ import Pre from "../../components/Pre"
 
 const Tool = () => {
   const { contracts, listed, whitelist, getToken } = useProtocol()
-  const { pair: mirrorPair } = whitelist[getToken("MIR")]
+  const { pair: mirrorPair } = whitelist[getToken("KARMA")]
 
   /* input */
   const [contract, setContract] = useState<string>(mirrorPair)

@@ -4,8 +4,8 @@ export enum FarmType {
 }
 
 export enum TradeType {
-  BUY = "buy",
-  SELL = "sell",
+  PLEDGE = "pledge",
+  SWAP = "swap",
 }
 
 export enum MintType {

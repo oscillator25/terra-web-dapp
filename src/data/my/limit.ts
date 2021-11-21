@@ -29,25 +29,25 @@ export const useMyLimitOrder = () => {
       amount: minus(askToken.amount, filled_ask_amount),
     }
 
-    const type = offerAsset.token === "uusd" ? TradeType.BUY : TradeType.SELL
+    const type = offerAsset.token === "uusd" ? TradeType.PLEDGE : TradeType.SWAP
 
     const asset = {
-      [TradeType.BUY]: askAsset,
-      [TradeType.SELL]: offerAsset,
+      [TradeType.PLEDGE]: askAsset,
+      [TradeType.SWAP]: offerAsset,
     }[type]
     const uusd = {
-      [TradeType.BUY]: offerAsset,
-      [TradeType.SELL]: askAsset,
+      [TradeType.PLEDGE]: offerAsset,
+      [TradeType.SWAP]: askAsset,
     }[type]
 
     const limitPrice = {
-      [TradeType.BUY]: div(offerToken.amount, askToken.amount),
-      [TradeType.SELL]: div(askToken.amount, offerToken.amount),
+      [TradeType.PLEDGE]: div(offerToken.amount, askToken.amount),
+      [TradeType.SWAP]: div(askToken.amount, offerToken.amount),
     }[type]
 
     const terraswapPrice = {
-      [TradeType.BUY]: findPrice(priceKey, askAsset.token),
-      [TradeType.SELL]: findPrice(priceKey, offerAsset.token),
+      [TradeType.PLEDGE]: findPrice(priceKey, askAsset.token),
+      [TradeType.SWAP]: findPrice(priceKey, offerAsset.token),
     }[type]
 
     const offerPrice = findPrice(priceKey, offerAsset.token)

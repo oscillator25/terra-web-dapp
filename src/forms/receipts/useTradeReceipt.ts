@@ -22,20 +22,20 @@ export default (type: TradeType, simulatedPrice?: string) => (logs: TxLog[]) => 
   const offerSymbol = getSymbol(offerAsset)
 
   const price = {
-    [TradeType.BUY]: div(offer, rtn),
-    [TradeType.SELL]: div(rtn, offer),
+    [TradeType.PLEDGE]: div(offer, rtn),
+    [TradeType.SWAP]: div(rtn, offer),
   }[type]
 
   const slippage = minus(div(price, simulatedPrice), 1)
 
   /* contents */
   const priceContents = {
-    [TradeType.BUY]: {
+    [TradeType.PLEDGE]: {
       title: `Price per ${lookupSymbol(rtnSymbol)}`,
       content: `${format(price)} ${lookupSymbol(offerSymbol)}`,
       children: [{ title: "Slippage", content: percent(slippage) }],
     },
-    [TradeType.SELL]: {
+    [TradeType.SWAP]: {
       title: `Price per ${lookupSymbol(offerSymbol)}`,
       content: `${format(price)} ${lookupSymbol(rtnSymbol)}`,
       children: [{ title: "Slippage", content: percent(slippage) }],
@@ -43,7 +43,7 @@ export default (type: TradeType, simulatedPrice?: string) => (logs: TxLog[]) => 
   }[type]
 
   const rtnContents = {
-    title: { [TradeType.BUY]: "Bought", [TradeType.SELL]: "Earned" }[type],
+    title: { [TradeType.PLEDGE]: "Bought", [TradeType.SWAP]: "Earned" }[type],
     content: formatAsset(rtn, rtnSymbol),
     children: [
       { title: "Spread", content: formatAsset(spread, rtnSymbol) },
@@ -56,12 +56,12 @@ export default (type: TradeType, simulatedPrice?: string) => (logs: TxLog[]) => 
   }
 
   const offerContents = {
-    title: { [TradeType.BUY]: "Paid", [TradeType.SELL]: "Sold" }[type],
+    title: { [TradeType.PLEDGE]: "Paid", [TradeType.SWAP]: "Sold" }[type],
     content: formatAsset(offer, offerSymbol),
   }
 
   return {
-    [TradeType.BUY]: [priceContents, rtnContents, offerContents],
-    [TradeType.SELL]: [priceContents, offerContents, rtnContents],
+    [TradeType.PLEDGE]: [priceContents, rtnContents, offerContents],
+    [TradeType.SWAP]: [priceContents, offerContents, rtnContents],
   }[type]
 }

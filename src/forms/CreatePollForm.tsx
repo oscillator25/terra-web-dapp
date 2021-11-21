@@ -297,7 +297,7 @@ const CreatePollForm = ({ type, headings }: Props) => {
           : v.integer(effectiveDelay, "Effective Delay"),
         [Key.proposalDeposit]: !proposalDeposit
           ? ""
-          : v.amount(proposalDeposit, { symbol: "MIR" }),
+          : v.amount(proposalDeposit, { symbol: "KARMA" }),
         [Key.voterWeight]: !voterWeight
           ? ""
           : v.amount(voterWeight, {}, "Weight"),
@@ -309,7 +309,7 @@ const CreatePollForm = ({ type, headings }: Props) => {
 
         // Type.COMMUNITY_SPEND
         [Key.recipient]: v.address(recipient),
-        [Key.amount]: v.amount(amount, { symbol: "MIR" }),
+        [Key.amount]: v.amount(amount, { symbol: "KARMA" }),
       },
       "",
       getFieldKeys()
@@ -340,7 +340,7 @@ const CreatePollForm = ({ type, headings }: Props) => {
   const selectAssetConfig: Config = {
     token: asset,
     onSelect: (value) => setValue(Key.asset, value),
-    validate: isCollateral ? undefined : ({ symbol }) => symbol !== "MIR",
+    validate: isCollateral ? undefined : ({ symbol }) => symbol !== "KARMA",
     native: isCollateral ? ["uluna"] : undefined,
   }
 
@@ -383,15 +383,15 @@ const CreatePollForm = ({ type, headings }: Props) => {
     [Key.threshold]: times(config?.threshold, 100),
     [Key.votingPeriod]: String(config?.voting_period) ?? "",
     [Key.effectiveDelay]: String(config?.effective_delay) ?? "",
-    [Key.proposalDeposit]: lookup(config?.proposal_deposit, "MIR") ?? "",
+    [Key.proposalDeposit]: lookup(config?.proposal_deposit, "KARMA") ?? "",
     [Key.voterWeight]: config?.voter_weight ?? "",
   }
 
   const fields = {
     deposit: {
-      help: renderBalance(findBalance(getToken("MIR")), "MIR"),
+      help: renderBalance(findBalance(getToken("KARMA")), "KARMA"),
       label: <TooltipIcon content={Tooltips.Gov.Deposit}>Deposit</TooltipIcon>,
-      value: <Formatted symbol="MIR">{deposit}</Formatted>,
+      value: <Formatted symbol="KARMA">{deposit}</Formatted>,
     },
 
     ...getFields({
@@ -604,7 +604,7 @@ const CreatePollForm = ({ type, headings }: Props) => {
           </TooltipIcon>
         ),
         input: { placeholder: configPlaceholders[Key.proposalDeposit] },
-        unit: "MIR",
+        unit: "KARMA",
         unitAfterValue: true,
       },
       [Key.voterWeight]: {
@@ -643,9 +643,9 @@ const CreatePollForm = ({ type, headings }: Props) => {
       },
       [Key.amount]: {
         label: <TooltipIcon content={Tooltips.Gov.Amount}>Amount</TooltipIcon>,
-        input: { placeholder: placeholder("MIR") },
-        help: renderBalance(spend_limit, "MIR"),
-        unit: "MIR",
+        input: { placeholder: placeholder("KARMA") },
+        help: renderBalance(spend_limit, "KARMA"),
+        unit: "KARMA",
         unitAfterValue: true,
       },
     }),
@@ -773,7 +773,7 @@ const CreatePollForm = ({ type, headings }: Props) => {
     }),
   ]
 
-  const messages = !gte(findBalance(getToken("MIR")), deposit)
+  const messages = !gte(findBalance(getToken("KARMA")), deposit)
     ? ["Insufficient balance"]
     : getLength(msg) > MAX_MSG_LENGTH
     ? ["Input is too long to be executed"]

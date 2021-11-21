@@ -7,7 +7,7 @@ import Page from "../../components/Page"
 
 const GovStake = () => {
   const { getToken } = useProtocol()
-  const token = getToken("MIR")
+  const token = getToken("KARMA")
   const { hash: type } = useHash<StakeType>(StakeType.STAKE)
 
   return (

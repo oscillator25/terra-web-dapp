@@ -15,7 +15,7 @@ export const useMyFarming = () => {
   const getPool = usePool()
   const assetsAPR = useAssetsAPR()
 
-  const mir = getToken("MIR")
+  const karma = getToken("KARMA")
 
   const dataSource = listedAll
     .map((item: ListedItem) => {
@@ -36,7 +36,7 @@ export const useMyFarming = () => {
       [staked, reward].some((balance) => balance && gt(balance, 0))
     )
 
-  const price = findPrice(priceKey, mir)
+  const price = findPrice(priceKey, karma)
   const totalRewards = rewards.long
   const totalRewardsValue = times(rewards.long, price)
   const totalWithdrawableValue = sum(
