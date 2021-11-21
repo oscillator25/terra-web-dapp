@@ -8,7 +8,7 @@ const DocsLink = () => {
   return (
     <ExtLink href={DOCS} className={classNames(styles.link, "desktop")}>
       <Icon name="Docs" size={22} />
-      Mirror Docs
+      Help Protocol Docs
     </ExtLink>
   )
 }
