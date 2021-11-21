@@ -1,6 +1,6 @@
 import medium from "./Community/medium.png"
-import discord from "./Community/discord.png"
-import telegram from "./Community/telegram.png"
+//import discord from "./Community/discord.png"
+//import telegram from "./Community/telegram.png"
 import twitter from "./Community/twitter.png"
 import github from "./Community/github.png"
 
@@ -15,27 +15,17 @@ interface Props {
 const Community = ({ network, project }: Props) => {
   const community = [
     {
-      href: `https://github.com/Mirror-Protocol/${project}`,
+      href: `https://github.com/Help-Protocol`,
       src: github,
       alt: "Github",
     },
     {
-      href: "https://medium.com/@mirror-protocol",
+      href: "https://medium.com/@onchainengineer",
       src: medium,
       alt: "Medium",
     },
     {
-      href: "https://t.me/mirror_protocol",
-      src: telegram,
-      alt: "Telegram",
-    },
-    {
-      href: "https://discord.gg/KYC22sngFn",
-      src: discord,
-      alt: "Discord",
-    },
-    {
-      href: "https://twitter.com/mirror_protocol",
+      href: "https://twitter.com/onchainengineer",
       src: twitter,
       alt: "Twitter",
     },
